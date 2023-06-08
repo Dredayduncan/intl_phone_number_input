@@ -54,7 +54,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ElevatedButton(
               onPressed: () {
-                formKey.currentState.validate();
+                if (formKey.currentState != null){
+                  formKey.currentState!.validate();
+                }
+
               },
               child: Text('Validate'),
             ),
@@ -77,9 +80,13 @@ class _MyHomePageState extends State<MyHomePage> {
     String parsableNumber = await PhoneNumber.getParsableNumber(number);
     controller.text = parsableNumber;
 
-    setState(() {
-      initialCountry = number.isoCode;
-    });
+    if (number.isoCode != null){
+      setState(() {
+        initialCountry = number.isoCode!;
+      });
+    }
+
+
   }
 
   @override
